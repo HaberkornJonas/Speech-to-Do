@@ -1,0 +1,103 @@
+<mat-drawer-container class="container" autosize>
+  <p>
+    <mat-toolbar color="primary">
+      <span>Speech to Do</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+  </p>
+
+  <div class="example-sidenav-content">
+    <div style="margin: 100px">
+      <h1>What do you have to do ?</h1>
+      <button
+        mat-raised-button
+        [disabled]="recording || loading"
+        (click)="startService()"
+        color="primary"
+      >
+        Start recording
+      </button>
+      <div style="margin: 10px"></div>
+      <button
+        mat-raised-button
+        [disabled]="!recording || loading"
+        (click)="stopService()"
+        color="primary"
+      >
+        Stop recording
+      </button>
+      <div style="margin: 10px"></div>
+      <mat-form-field appearance="fill" style="margin-right: 15px">
+        <mat-label>Break word</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. stop"
+          [(ngModel)]="breakword"
+          [value]="breakword"
+          name="fieldName"
+          ngDefaultControl
+        />
+      </mat-form-field>
+      <mat-checkbox
+        [(ngModel)]="checkConcatenate"
+        name=""
+        ngDefaultControl
+        color="primary"
+        >Check if breakword is concatenated to other words</mat-checkbox
+      >
+
+      <hr
+        *ngIf="service.showRequest || service.tempWords"
+        style="margin: 40px 0px"
+      />
+
+      <ng-container *ngIf="service.showRequest || service.tempWords">
+        <mat-card>{{
+          service.showRequest != service.tempWords
+            ? service.showRequest + " " + service.tempWords
+            : service.tempWords
+        }}</mat-card>
+
+        <br />
+
+        <button
+          [disabled]="recording || loading"
+          mat-raised-button
+          (click)="getBestPath()"
+          color="primary"
+        >
+          Validate
+        </button>
+        &nbsp;&nbsp;
+        <button
+          [disabled]="recording || loading"
+          mat-raised-button
+          (click)="clear()"
+          color="warn"
+        >
+          Clear
+        </button>
+        <br *ngIf="loading" />
+        <br *ngIf="loading" />
+        <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+      </ng-container>
+
+      <hr *ngIf="todos.length" style="margin: 40px 0px" />
+
+      <mat-card *ngIf="todos.length > 0" class="todo">
+        <h2>To do</h2>
+        <ng-container *ngFor="let todo of todos">
+          <mat-checkbox
+            [(ngModel)]="todo.state"
+            name=""
+            ngDefaultControl
+            color="primary"
+            >{{ todo.text }}</mat-checkbox
+          >
+          <br />
+        </ng-container>
+      </mat-card>
+    </div>
+  </div>
+</mat-drawer-container>

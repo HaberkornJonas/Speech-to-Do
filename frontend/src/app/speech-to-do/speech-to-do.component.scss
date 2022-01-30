@@ -1,0 +1,8 @@
+.container {
+  height: 100vh;
+}
+
+.todo .mat-checkbox-checked {
+  text-decoration: line-through;
+  color: rgb(175, 175, 175);
+}
