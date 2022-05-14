@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TodoService {
-  readonly ROOT_URL = 'http://localhost:5000/api/v1/getTodoList';
+  readonly ROOT_URL = 'http://localhost:5001/api/v1/getTodoList';
 
   constructor(private http: HttpClient) {}
 

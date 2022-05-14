@@ -2,6 +2,25 @@
   height: 100vh;
 }
 
+.disclaimer-container {
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px auto;
+  width: 50%;
+  background-color: rgb(254 237 198 / 76%);
+  display: flex;
+  align-items: center;
+
+  mat-icon {
+    color: #eea74a;
+    margin-right: 15px;
+  }
+
+  p {
+    margin: 0px;
+  }
+}
+
 .todo .mat-checkbox-checked {
   text-decoration: line-through;
   color: rgb(175, 175, 175);

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from infrastructure.LanguageProcessing import LanguageProcessing
 import json
 
@@ -12,6 +12,7 @@ languageProcessor = LanguageProcessing()
 
 
 @app.route('/')
+@cross_origin()
 def home():
     return "<h2> Welcome 😃 this is the Home page of the Speech-to-Do api ✅</h2> " \
            "<br>" \
@@ -22,6 +23,7 @@ def home():
 
 
 @app.route('/api/v1/getTodoList', methods=["POST"])
+@cross_origin()
 def userPostRequest():
 
     body = request.get_json(force=True)
